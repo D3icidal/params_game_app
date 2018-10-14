@@ -19,7 +19,7 @@ class Api::GamesController < ApplicationController
 
   def user_guess
     @guess = params[:guess]
-    @answer == @guess ? "CORRECT" : "WRONG"
+    @answer == @guess ? @message = "CORRECT" : @message = "WRONG"
     render "numbers_game.json.jbuilder"
   end
 end
