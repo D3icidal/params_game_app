@@ -9,17 +9,32 @@ class Api::GamesController < ApplicationController
     end
     render "name_game.json.jbuilder"
   end
-  @answer = 0
+
+  @answer = 5
+
   def numbers
-    if @answer == 0 
-      @answer = rand(1..100)
+    if (1..100).include? @answer.to_i
+      @answer = rand(1..6)
     end
+    @answer = 5
+    puts "current @answer: #{@answer}"
+    p @answer
     user_guess
   end
 
   def user_guess
-    @guess = params[:guess]
-    @answer == @guess ? @message = "CORRECT" : @message = "WRONG"
+    @guess = params[:guess].to_i
+    # p @guess
+    # p @answer
+    if @guess == @answer
+      @message = "CORRECT"
+    elsif @guess < @answer
+      puts "Guess too low"
+      @message = "Too low"
+    elsif @guess > @answer
+      puts "Guess too high"
+      @message = "Too high"
+    end 
     render "numbers_game.json.jbuilder"
   end
 end

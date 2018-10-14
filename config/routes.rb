@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # verb "/urls" => "namespace/controllers#action"
   namespace :api do
     get '/name_game' => 'games#name'
-    get '/number_game' => 'games#numbers'
+    # get '/numbers_game' => 'games#numbers'
+    get '/numbers_game/:guess' => 'games#numbers'
   end
 
 end
